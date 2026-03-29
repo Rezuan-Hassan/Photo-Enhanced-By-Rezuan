@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Photo Enhanced By Rezuan</title>
+    <style>
+        :root { --rezuan-green: #00ff88; --dark-space: #0a0a0a; --card-bg: #161616; }
+        
+        body { 
+            margin: 0; padding: 0; 
+            background-color: var(--dark-space); 
+            color: white; 
+            font-family: 'Segoe UI', sans-serif;
+            display: flex; flex-direction: column; align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Top Header */
+        header { 
+            width: 100%; padding: 20px 0; 
+            border-bottom: 2px solid var(--rezuan-green); 
+            text-align: center; background: var(--card-bg);
+            box-shadow: 0 4px 10px rgba(0, 255, 136, 0.2);
+        }
+        h1 { margin: 0; color: var(--rezuan-green); font-size: 22px; letter-spacing: 2px; }
+
+        .main-content { width: 90%; max-width: 500px; margin-top: 40px; text-align: center; }
+
+        /* Modern Upload Box */
+        .upload-box {
+            border: 2px dashed var(--rezuan-green);
+            background: var(--card-bg);
+            padding: 50px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .upload-box:active { transform: scale(0.98); background: #1a1a1a; }
+        .upload-box p { color: var(--rezuan-green); font-weight: bold; margin: 0; }
+
+        #file-input { display: none; }
+
+        /* Result Area */
+        #result-area { display: none; margin-top: 20px; width: 100%; }
+        canvas { 
+            width: 100%; border-radius: 15px; 
+            border: 1px solid #333;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
+        }
+        #loader { color: var(--rezuan-green); margin: 20px; font-weight: bold; display: none; }
+
+        /* Bottom Buttons (Sticky) */
+        .button-group {
+            position: fixed; bottom: 0; width: 100%;
+            background: rgba(22, 22, 22, 0.95);
+            padding: 20px; display: none;
+            justify-content: center; gap: 15px;
+            border-top: 1px solid #333;
+            box-sizing: border-box;
+        }
+
+        .btn {
+            flex: 1; padding: 15px; border-radius: 10px;
+            font-weight: bold; border: none; cursor: pointer;
+            text-transform: uppercase; font-size: 14px;
+        }
+        .view-btn { background: transparent; border: 2px solid var(--rezuan-green); color: var(--rezuan-green); }
+        .download-btn { background: var(--rezuan-green); color: black; }
+    </style>
+</head>
+<body>
+
+    <header><h1>PHOTO ENHANCED BY REZUAN</h1></header>
+
+    <div class="main-content">
+        <div class="upload-box" id="drop-zone" onclick="document.getElementById('file-input').click()">
+            <p>+ UPLOAD PHOTO TO ENHANCE</p>
+            <input type="file" id="file-input" accept="image/*">
+        </div>
+
+        <div id="loader">AI PROCESSING...</div>
+
+        <div id="result-area">
+            <canvas id="canvas"></canvas>
+        </div>
+    </div>
+
+    <div class="button-group" id="controls">
+        <button class="btn view-btn" id="view-full">VIEW FULL</button>
+        <button class="btn download-btn" id="download-img">DOWNLOAD</button>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
